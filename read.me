@@ -1,0 +1,167 @@
+before we run any file we should run 'make all' and 'export LD_LIBRARY_PATH=.' on the original shell.
+
+ls command: we run ls command on stshell this is what we get: 
+a.out		 codecB.c   decode.c	   libcodecB.so   task2_v1.1.pdf   tmp
+ basic_shell.c	 copy	    encode	   Makefile	 ' temp-2.txt'
+ cmp		 copy.c     encode.c	   output.txt	 ' temp-e.txt'
+ cmp.c		 copy.o     input.txt	   stshell	  temp-e.txt
+ codecA.c	 decode     libcodecA.so   stshell.c	  temp.txt
+Command executed successfully.
+ which are all the files in the same directory we ae currently working on.
+ 
+ by the way, if we get command executed successfully it means that the command is correct.
+ 
+ ls.. command: we run ls command on stshell this is what we get: 
+ hw_0  HW_1  HW1
+Command executed successfully.
+which are the directories in the previous directory.
+
+cat Makefile command: we run ls command on stshell this is what we get: 
+
+CC = gcc
+CFLAGS = -Wall -Werror -fpic
+LDFLAGS = -shared
+
+LIBRARY_A = libcodecA.so
+LIBRARY_B = libcodecB.so
+
+ENCODE = encode
+DECODE = decode
+CMP = cmp
+COPY = copy
+STSHELL = stshell
+all: $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+
+$(LIBRARY_A): codecA.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(LIBRARY_B): codecB.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(ENCODE): encode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(DECODE): decode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(CMP): cmp.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(COPY): copy.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(STSHELL): stshell.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+clean:
+	rm -f $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+Command executed successfully.
+
+which is our makefile.
+
+cat Makefile | grep : command: 
+
+CC = gcc
+CFLAGS = -Wall -Werror -fpic
+LDFLAGS = -shared
+
+LIBRARY_A = libcodecA.so
+LIBRARY_B = libcodecB.so
+
+ENCODE = encode
+DECODE = decode
+CMP = cmp
+COPY = copy
+STSHELL = stshell
+all: $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+
+$(LIBRARY_A): codecA.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(LIBRARY_B): codecB.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(ENCODE): encode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(DECODE): decode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(CMP): cmp.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(COPY): copy.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(STSHELL): stshell.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+clean:
+	rm -f $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+Command executed successfully.
+
+cat Makefile | grep : | sort command:
+
+CC = gcc
+CFLAGS = -Wall -Werror -fpic
+LDFLAGS = -shared
+
+LIBRARY_A = libcodecA.so
+LIBRARY_B = libcodecB.so
+
+ENCODE = encode
+DECODE = decode
+CMP = cmp
+COPY = copy
+STSHELL = stshell
+all: $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+
+$(LIBRARY_A): codecA.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(LIBRARY_B): codecB.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(ENCODE): encode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(DECODE): decode.c
+	$(CC) $(CFLAGS) $^ -o $@ -ldl
+
+$(CMP): cmp.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(COPY): copy.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(STSHELL): stshell.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+clean:
+	rm -f $(LIBRARY_A) $(LIBRARY_B) $(ENCODE) $(DECODE) $(CMP) $(COPY) $(STSHELL)
+Command executed successfully.
+
+./copy -f Makefile temp.txt
+Command executed successfully.
+
+forcefully copies the makefile file into temp.txt ,if it exsists it overrides it's content and if not it it creates the file and writes the makefile data into it.
+
+./cmp temp.txt temp-2.txt -v command:
+distinct
+Command exited with status 1.
+
+which means they don't have the same content. 
+ 
+ ./cmp temp.txt temp-2.txt command:
+ 1
+Command exited with status 1.
+
+same explanation as before.
+
+./cmp temp.txt temp-2.txt -v command: 
+equal
+Command executed successfully.
+
+because they contain the same content
+
+
